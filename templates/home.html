@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+{% block content %}
+<div class="grid-container">
+{% for POST in POST %}
+        <div >
+           <h5>{{ POST.title }}.{{ POST.host }}</h5>
+           <img src="{{ POST.background_image.url }}" style="width:150px" >
+          <div>
+           <h5>{{ POST.created }} </h5>
+           <h5>topic-{{ POST.topic}}</h5>
+           <a href="{% url 'room' %}">see more</a>
+          </div>
+        </div>
+{% endfor %}
+</div>
+
+{% endblock content %}
